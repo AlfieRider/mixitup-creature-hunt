@@ -51,7 +51,7 @@ Each time a twitch-user hits the redeem in chat, MixItUp will run CreatureHunt.p
 
 ## ⚠️ MUST DO's before going live
 Please confirm that:
-1.The creature pool has not been set to zero. This can be viewed in the CreatureManager. At least one entry at a time must be ensured.
+1. The creature pool has not been set to zero. This can be viewed in the CreatureManager. At least one entry at a time must be ensured.
 2. MixItUp wiring is not YET covered by this readme. Will occur very soon.
 
 ## Known limitations
