@@ -47,7 +47,7 @@ Each time a twitch-user hits the redeem in chat, MixItUp will run CreatureHunt.p
 1. Enter the usual MixItUp system.
 2. In Channel Point Rewards (or Commands), create and name the redeem to your pleasing.
 3. Under the Actions list, click '+' and select 'External Program'.
-4. tbc
+4. Toggle `Wait Until Complete` and  `Save Output` BOTH ON, as all program output will in turn be saved into the `$externalprogramresult` MixItUp variable.
 
 ## ⚠️ MUST DO's before going live
 Please confirm that:
