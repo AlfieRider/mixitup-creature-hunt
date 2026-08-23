@@ -43,6 +43,12 @@ Each time a twitch-user hits the redeem in chat, MixItUp will run CreatureHunt.p
 ## How shiny odds work.
 ...Will adjust this later.
 
+## How to Link to MixItUp:
+1. Enter the usual MixItUp system.
+2. In Channel Point Rewards (or Commands), create and name the redeem to your pleasing.
+3. Under the Actions list, click '+' and select 'External Program'.
+4. tbc
+
 ## ⚠️ MUST DO's before going live
 Please confirm that:
 1.The creature pool has not been set to zero. This can be viewed in the CreatureManager. At least one entry at a time must be ensured.
@@ -51,6 +57,7 @@ Please confirm that:
 ## Known limitations
 - No confirmation prompt if JSON pool is manually edited (i.e outside the manager). Malformed entries are silently be skipped over by .get() fallbacks rather than causing an error, so a typo'd error will simply raise a visible warning.
 - CreatureManager.py and CreatureHunt.py don't coordinate file access. In other words, there is a window where, if editing the creature pool live, the user could redeem against a half-written entry. Concurrent access and Isolation (from ACID) will be implemented later on. Please bare with.
+- For this repo, and many others, upon running CreatureManager.py, Creatures.JSON may become locked under `[errno13] Permission Denied`. Ensure full control is permitted to this folder (and in turn the files within it), and ensure full whitelisting in any antivirus software if applicable.
 
 ## Extra information - Project origins
 A streamer reached out to me regarding their existing twitch redeem, being Mesian Velari's "Shiny Wooper Hunt". The original text file and endless lines of elif selection statements with O(n) access also was asking for a little upgrade, for lack of better phrasing (I'm sort of tired I'd like to sleep - sorry! ill fix this). Thus the O(1) solution was very quickly born. CreatureManager.py only came to exist as I thought I'd save Mesian from having to learn JSON.
