@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, filedialog
 import json
 import os
 import re
@@ -558,8 +558,32 @@ class CreatureManager(tk.Tk):
         self.loadCreatureIntoUI(None)
 
     def openFileExplorer(self, sfxInput):
-        #sfxInput for which of shiny and normal
-        pass
+
+        filename = filedialog.askopenfilename(
+            initialdir="/", 
+            title="Select an Audio File", 
+            filetypes=[
+                ("Audio Files", "*.mp3 *.wav *.mp4 *.m4a *.flac *.aac *.wma")
+            ]
+        )
+
+        # "" happens when nothing is selected, i.e. the window is closed
+        if filename != "": 
+        
+            if sfxInput == "mSFX":
+                self.sfxMessage.delete("1.0", tk.END)
+                self.sfxMessage.insert("1.0", filename)
+                
+
+            elif sfxInput == "smSFX":
+                self.sfxShinyMessage.delete("1.0", tk.END)
+                self.sfxShinyMessage.insert("1.0", filename)
+                
+            else:
+                print("Code error = sfxInput incorrectly passed.")
+
+        self.checkForChanges()
+
 
 app = CreatureManager()
 app.mainloop()
