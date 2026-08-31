@@ -55,11 +55,10 @@ Please confirm that:
 2. MixItUp wiring is fully complete as written above.
 
 ## Known limitations
-- No confirmation prompt if JSON pool is manually edited (i.e outside the manager). Malformed entries are silently be skipped over by .get() fallbacks rather than causing an error, so a typo'd error will simply raise a visible warning.
+- No confirmation prompt if JSON pool is manually edited (i.e outside the manager). Malformed entries are silently be skipped over by .get() fallbacks rather than causing an error, so a typo'd error will simply raise a visible warning. To avoid this, only edit the JSON through the manager ideally. One or the other at a time, not both.
 - CreatureManager.py and CreatureHunt.py don't coordinate file access. In other words, there is a window where, if editing the creature pool live, the user could redeem against a half-written entry. Concurrent access and Isolation (from ACID) will be implemented later on. Please bare with.
-- For this repo, and many others, upon running CreatureManager.py, Creatures.JSON may become locked under `[errno13] Permission Denied`. Ensure full control is permitted to this folder (and in turn the files within it), and ensure full whitelisting in any antivirus software if applicable.
 
 ## Extra information - Project origins
-A streamer reached out to me regarding their existing twitch redeem, being Mesian Velari's "Shiny Wooper Hunt". The original text file and endless lines of elif selection statements with O(n) access also was asking for a little upgrade, for lack of better phrasing (I'm sort of tired I'd like to sleep - sorry! ill fix this). Thus the O(1) solution was very quickly born. CreatureManager.py only came to exist as I thought I'd save Mesian from having to learn JSON.
+A Twitch Streamer reached out to me regarding their existing twitch redeem, being Mesian Velari's "Shiny Wooper Hunt". The original text file and endless lines of `elif` selection statements with O(n) access also was asking for a little upgrade, for lack of better phrasing. Thus the `O(1) solution` was very quickly born. CreatureManager.py only came to exist as I thought I'd save Mesian from having to learn JSON. Ever since, through remote tinkering with MixItUp (and many late-evening calls), this has finally been fully integrated into their Twitch Viewer Redeem engagement system. This has now been proved to incredibly simplify the process, management and setup of the redeem and it's inner workings.
 
 
