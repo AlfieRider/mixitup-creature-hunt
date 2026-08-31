@@ -1,7 +1,9 @@
 {
     "Wooper": {
         "message": "Regular Wooper",
-        "shinyMessage": "SHINY WOOPER"
+        "shinyMessage": "SHINY WOOPER",
+        "messageSFX": "jsfds",
+        "shinyMessageSFX": "sgsgs"
     },
     "new_creature": {}
 }

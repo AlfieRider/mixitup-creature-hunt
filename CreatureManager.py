@@ -106,6 +106,16 @@ class CreatureManager(tk.Tk):
         self.shinyText.pack(fill="x", pady=(0, 12))
         self.shinyText.bind("<KeyRelease>", self.checkForChanges)
 
+        ttk.Label(self.rightPanel, text="Message SFX").pack(anchor="w")
+        self.sfxMessage = tk.Text(self.rightPanel, height=4, wrap="word")
+        self.sfxMessage.pack(fill="x", pady=(0,12))
+        self.sfxMessage.bind("<KeyRelease>", self.checkForChanges)
+
+        ttk.Label(self.rightPanel, text="ShinyMessage SFX").pack(anchor="w")
+        self.sfxShinyMessage = tk.Text(self.rightPanel, height=4, wrap="word")
+        self.sfxShinyMessage.pack(fill="x", pady=(0,12))
+        self.sfxShinyMessage.bind("<KeyRelease>", self.checkForChanges)
+
         self.selectedName = None
 
         self.saveButton = ttk.Button(self.rightPanel, text="Save Changes", command=self.saveChanges)
@@ -154,7 +164,13 @@ class CreatureManager(tk.Tk):
         self.shinyText.delete("1.0", tk.END)
         self.shinyText.insert("1.0", entry.get("shinyMessage", ""))
 
-        self.markSaved(entry.get("message", ""), entry.get("shinyMessage",""))
+        self.sfxMessage.delete("1.0", tk.END)
+        self.sfxMessage.insert("1.0", entry.get("messageSFX", ""))
+
+        self.sfxShinyMessage.delete("1.0", tk.END)
+        self.sfxShinyMessage.insert("1.0", entry.get("shinyMessageSFX", ""))
+
+        self.markSaved(entry.get("message", ""), entry.get("shinyMessage",""), entry.get("messageSFX", ""), entry.get("shinyMessageSFX", ""))
 
     def onSelect(self, event=None):
         selection = self.creatureListbox.curselection()
@@ -206,8 +222,10 @@ class CreatureManager(tk.Tk):
 
         currentMessage = self.messageText.get("1.0", "end-1c")
         currentShinyMessage = self.shinyText.get("1.0", "end-1c")
+        currentMessageSFX = self.sfxMessage.get("1.0", "end-1c")
+        currentShinyMessageSFX = self.sfxShinyMessage.get("1.0", "end-1c")
 
-        changed = (currentMessage != self.originalMessage) or (currentShinyMessage != self.originalShinyMessage)
+        changed = (currentMessage != self.originalMessage) or (currentShinyMessage != self.originalShinyMessage) or (currentMessageSFX != self.originalMessageSFX) or (currentShinyMessageSFX != self.originalShinyMessageSFX)
         if changed:
             self.saveButton.pack(anchor="e", pady=(6, 0))
         else:
@@ -219,18 +237,24 @@ class CreatureManager(tk.Tk):
 
         currentMessage = self.messageText.get("1.0", "end-1c")
         currentShinyMessage = self.shinyText.get("1.0", "end-1c")
+        currentMessageSFX = self.sfxMessage.get("1.0", "end-1c")
+        currentShinyMessageSFX = self.sfxShinyMessage.get("1.0", "end-1c")
 
         entry = {}
         if currentMessage:
             entry["message"] = currentMessage
         if currentShinyMessage:
             entry["shinyMessage"] = currentShinyMessage
+        if currentMessageSFX:
+            entry["messageSFX"] = currentMessageSFX
+        if currentShinyMessageSFX:
+            entry["shinyMessageSFX"] = currentShinyMessageSFX
         self.data[self.selectedName] = entry
 
         self.writeToJson()
 
         #update such that save button disappears post-save
-        self.markSaved(currentMessage, currentShinyMessage)
+        self.markSaved(currentMessage, currentShinyMessage, currentMessageSFX, currentShinyMessageSFX)
 
     def onAddCreature(self):
         defaultName = "new_creature"
@@ -381,8 +405,10 @@ class CreatureManager(tk.Tk):
 
         currentMessage = self.messageText.get("1.0", "end-1c")
         currentShinyMessage = self.shinyText.get("1.0", "end-1c")
+        currentMessageSFX = self.sfxMessage.get("1.0", "end-1c")
+        currentShinyMessageSFX = self.sfxShinyMessage.get("1.0", "end-1c")
 
-        return (currentMessage != self.originalMessage) or (currentShinyMessage != self.originalShinyMessage)
+        return (currentMessage != self.originalMessage) or (currentShinyMessage != self.originalShinyMessage) or (currentMessageSFX != self.originalMessageSFX) or (currentShinyMessageSFX != self.originalShinyMessageSFX)
 
     def onCloseApp(self):
         if (self.selectedName is not None) and self.hasUnsavedChanges():
@@ -442,9 +468,11 @@ class CreatureManager(tk.Tk):
 
         return window, messageLabel, buttonRow
 
-    def markSaved(self, message, shiny):
+    def markSaved(self, message, shiny, mSFX, smSFX):
         self.originalMessage = message
         self.originalShinyMessage = shiny
+        self.originalMessageSFX = mSFX
+        self.originalShinyMessageSFX = smSFX
         self.saveButton.pack_forget()
 
     def openSettingsMenu(self):
@@ -487,6 +515,8 @@ class CreatureManager(tk.Tk):
 
         self.messageText.configure(background=fieldBg, foreground=fg, insertbackground=fg)
         self.shinyText.configure(background=fieldBg, foreground=fg, insertbackground=fg)
+        self.sfxMessage.configure(background=fieldBg, foreground=fg, insertbackground=fg)
+        self.sfxShinyMessage.configure(background=fieldBg, foreground=fg, insertbackground=fg)
         self.creatureListbox.configure(background=fieldBg, foreground=fg)
 
     def onReloadJSON(self):
