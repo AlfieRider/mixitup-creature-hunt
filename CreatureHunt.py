@@ -6,13 +6,15 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 CREATURES_JSON = os.path.join(SCRIPT_DIR, "Creatures.JSON")
 
+SFX_DIR = os.path.join(SCRIPT_DIR, "SFX")
+
 FLEE_CHANCE = 20/100
-FLEE_SFX_DIR = "insert directory here!!!"
+FLEE_SFX = os.path.join(SFX_DIR, "flee.mp3")
 
 #chance creature flees
 hasFled = random.random() < (FLEE_CHANCE)
 if hasFled:
-    print(["Oh. it fled. sorry...", FLEE_SFX_DIR])
+    print(["Oh. it fled. sorry...", FLEE_SFX])
     sys.exit()
 
 #Special "shiny message" based on conditional probability
