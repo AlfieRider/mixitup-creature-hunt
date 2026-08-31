@@ -11,7 +11,7 @@ class CreatureManager(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Creature Manager")
-        self.geometry("1280x720")
+        self.geometry("1280x780")
         self.minsize(512, 288)
         self.darkMode = False
 
@@ -106,13 +106,25 @@ class CreatureManager(tk.Tk):
         self.shinyText.pack(fill="x", pady=(0, 12))
         self.shinyText.bind("<KeyRelease>", self.checkForChanges)
 
-        ttk.Label(self.rightPanel, text="Message SFX").pack(anchor="w")
-        self.sfxMessage = tk.Text(self.rightPanel, height=4, wrap="word")
+        sfxInput = ttk.Frame(self.rightPanel)
+        sfxInput.pack(fill="x", pady=(0,12))
+
+        fileExplorerMSFX = ttk.Button(sfxInput, text="[>] File Input", command=lambda: self.openFileExplorer("mSFX"))
+        fileExplorerMSFX.pack(side="bottom", anchor="e")
+
+        ttk.Label(sfxInput, text="Message SFX").pack(anchor="w")
+        self.sfxMessage = tk.Text(sfxInput, height=4, wrap="word")
         self.sfxMessage.pack(fill="x", pady=(0,12))
         self.sfxMessage.bind("<KeyRelease>", self.checkForChanges)
 
-        ttk.Label(self.rightPanel, text="ShinyMessage SFX").pack(anchor="w")
-        self.sfxShinyMessage = tk.Text(self.rightPanel, height=4, wrap="word")
+        sfxShinyInput = ttk.Frame(self.rightPanel)
+        sfxShinyInput.pack(fill="x", pady=(0,12))
+
+        fileExplorerSMSFX = ttk.Button(sfxShinyInput, text="[>] File Input", command=lambda: self.openFileExplorer("smSFX"))
+        fileExplorerSMSFX.pack(side="bottom", anchor="e")
+
+        ttk.Label(sfxShinyInput, text="ShinyMessage SFX").pack(anchor="w")
+        self.sfxShinyMessage = tk.Text(sfxShinyInput, height=4, wrap="word")
         self.sfxShinyMessage.pack(fill="x", pady=(0,12))
         self.sfxShinyMessage.bind("<KeyRelease>", self.checkForChanges)
 
@@ -544,6 +556,10 @@ class CreatureManager(tk.Tk):
         self.loadData()
         self.refreshListbox()
         self.loadCreatureIntoUI(None)
+
+    def openFileExplorer(self, sfxInput):
+        #sfxInput for which of shiny and normal
+        pass
 
 app = CreatureManager()
 app.mainloop()
