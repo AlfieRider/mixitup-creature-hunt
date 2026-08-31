@@ -14,7 +14,7 @@ if hasFled:
     sys.exit()
 
 #locate + open JSON data file in read
-with open("CREATURES_JSON", "r", encoding="utf-8") as file:
+with open(CREATURES_JSON, "r", encoding="utf-8") as file:
     data = json.load(file)
 
 #select random creature from JSON (in O(1); dictionary)
