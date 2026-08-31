@@ -49,8 +49,10 @@ This section is currently pending; the exact numbers for ensuring a 1/4096 proba
 Earlier versions of `CreatureHunt.py` used `print([message, sfx])` and other similar formats. However, MixItUp External Program action has no way to parse this kind of listed output into two separate values, and doesn't support array-style indexing, or even a string-splitting function in its actions set, thus this original formatting couldn't be reconciled on MixItUp's end.
 
 To resolve this, `CreatureHunt.py` now writes to `HuntResult.txt`, following the convention shown below:
->line1: the chat message
->line2: the sfx path (or a blank line if this doesn't exist)
+```
+line1: the chat message
+line2: the sfx path (or a blank line if this doesn't exist)
+```
 
 ## How to Link to MixItUp:
 1. Enter the usual MixItUp system.
