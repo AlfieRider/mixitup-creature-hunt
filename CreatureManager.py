@@ -4,7 +4,8 @@ import json
 import os
 import re
 
-CREATURES_JSON = "Creatures.JSON"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+CREATURES_JSON = os.path.join(SCRIPT_DIR, "Creatures.JSON")
 
 class CreatureManager(tk.Tk):
     def __init__(self):

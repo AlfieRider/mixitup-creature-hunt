@@ -1,7 +1,10 @@
 import json
 import random
 import sys
+import os
 
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+CREATURES_JSON = os.path.join(SCRIPT_DIR, "Creatures.JSON")
 
 FLEE_CHANCE = 20/100
 #chance creature flees
@@ -11,7 +14,7 @@ if hasFled:
     sys.exit()
 
 #locate + open JSON data file in read
-with open("Creatures.JSON", "r", encoding="utf-8") as file:
+with open("CREATURES_JSON", "r", encoding="utf-8") as file:
     data = json.load(file)
 
 #select random creature from JSON (in O(1); dictionary)
