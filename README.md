@@ -26,14 +26,14 @@ Provided below is a table which describes each file in this repository, and brea
 ## Using Creature Manager
 - Adding a creature: click "+" in the top-left. New entries are auto-named "new-creature1", "new-creature2", ..., "new-creature(n)" for n new entries. This is to avoid collisions.
 - Editing a creature: click on the creature's name in the given list (see the left of the screen), and you will be shown the current contents of this creature entry on the right of the screen. You can edit not only the Message and ShinyMessage boxes, but also the creature's name itself.
-- Message vs ShinyMessage: Message will be outputted upon a normal result from CreatureHunt.py. ShinyMessage will be outputted for a creature if the shiny check has succeeded in CreatureHunt.py. By default, if no message or shiny message is defined, the default "You have caught _CreatureName_" will be outputted.
+- Message vs ShinyMessage: Message will be outputted upon a normal result from `CreatureHunt.py`. ShinyMessage will be outputted for a creature if the shiny check has succeeded in `CreatureHunt.py`. By default, if no message or shiny message is defined, the default "You have caught _CreatureName_" will be outputted.
 - MessageSFX / ShinyMessageSFX: an optional sound file path for each outcome. Either type the file path in the input box, or click the `[>] File Input` button beneath either field to navigate via file explorer instead (which filters for valid audio files). The path will then be automatically filled after selection. When manually typing the path, please ensure it is correct, as their is currently no validation for this!!!
 - Renaming: click 'Rename' next to the creature's name. Only letters (both cases), numbers, "_", and "-" are permitted. Duplicate names are also blocked.
 - Deleting: the red 'Delete Creature' button asks for delete confirmation, then will show a 5 second countdown before the window closes (upon confirming).
 - Switching creatures with unsaved edits: this application will always ask before discarding unsaved changes, whether due to clicking a different creature, closing the application, or reloading the JSON (in case of external editing).
 - Settings ('⚙', in the top right):
     - Toggle Dark Mode: visual change only, with no effect on data.
-    - Reload from JSON: re-reads Creatures.JSON and refreshes the application. Useful if the file was edited manually outside of the app. Warns first if you have unsaved edits.
+    - Reload from JSON: re-reads `Creatures.JSON` and refreshes the application. Useful if the file was edited manually outside of the app. Warns first if you have unsaved edits.
 
 ## How CreatureHunt.py works
 Each time a twitch-user hits the redeem in chat, MixItUp will run CreatureHunt.py, which does the following:
