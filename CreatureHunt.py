@@ -7,11 +7,16 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 CREATURES_JSON = os.path.join(SCRIPT_DIR, "Creatures.JSON")
 
 FLEE_CHANCE = 20/100
+FLEE_SFX_DIR = "insert directory here!!!"
+
 #chance creature flees
 hasFled = random.random() < (FLEE_CHANCE)
 if hasFled:
-    print("Oh. It fled. Sorry.")
+    print(["Oh. it fled. sorry...", FLEE_SFX_DIR])
     sys.exit()
+
+#Special "shiny message" based on conditional probability
+isShiny = random.random() < ((1 - FLEE_CHANCE) * 1/4096)
 
 #locate + open JSON data file in read
 with open(CREATURES_JSON, "r", encoding="utf-8") as file:
@@ -21,13 +26,21 @@ with open(CREATURES_JSON, "r", encoding="utf-8") as file:
 creatureName = random.choice(list(data.keys()))
 chosen = data[creatureName]
 
-#Special "shiny message" based on conditional probability
-isShiny = random.random() < ((1 - FLEE_CHANCE) * 1/4096)
+defaultMessage = f"You have caught {creatureName}"
+defaultSFX = ""
 
 #output respective message for chosen creature
-if isShiny and ("shinyMessage" in chosen):
-    print(chosen["shinyMessage"])
-elif "message" in chosen:
-    print(chosen["message"])
+if isShiny:
+    message = chosen.get(
+        "shinyMessage",
+        chosen.get("message", defaultMessage)
+    )
+    sfx = chosen.get(
+        "shinyMessageSFX",
+        chosen.get("messageSFX", defaultSFX)
+    )
 else:
-    print("You have caught", creatureName)
+    message = chosen.get("message", defaultMessage)
+    sfx = chosen.get("messageSFX", defaultSFX)
+    
+print([message, sfx])
