@@ -64,7 +64,7 @@ line2: the sfx path (or a blank line if this doesn't exist)
 7. Add a `File Action`, set to `Read Specific Line From File`. The `file path` is to `CreatureHunt.py`, line number 1 should be saved to a Special Identifier, e.g. `$huntMessage`.
 8. Add a second `File Action` pathed to the same `CreatureHunt.py`. Set line number 2 to be saved to a different identifier, such as `$huntSFX`.
 9. Add a `Chat action`, and use `$huntMessage` in the text as required.
-10. Add a `Conditional Action`, such that if `$huntSFX` is not equal (`!=`) to an empty value (`""`), run a `Sound Action` using `$huntSFX` as the file path.
+10. Add a `Conditional Action`, such that if `$huntSFX` is not equal (`<>`) to an empty value (`""`), run a `Sound Action` using `$huntSFX` as the file path.
 
 ## ⚠️ MUST DO's before going live
 Please confirm that:
