@@ -13,11 +13,11 @@ RESULT_FILE = os.path.join(SCRIPT_DIR, "HuntResult.txt")
 FLEE_CHANCE = 20/100
 FLEE_SFX = os.path.join(SFX_DIR, "flee.mp3")
 
-def writeResult(message, sfx=""):
+def writeResult(message, sfx="", name=""):
     #line1 = msg, line2 = sfx path, blank if not exists.
     #See README.MD for more details on overall MixItUp integration.
     with open(RESULT_FILE, "w", encoding="utf-8") as file:
-        file.write(f"{message}\n{sfx}\n")
+        file.write(f"{message}\n{sfx}\n{name}\n")
 
 #chance creature flees
 hasFled = random.random() < (FLEE_CHANCE)
@@ -53,4 +53,4 @@ else:
     message = chosen.get("message", defaultMessage)
     sfx = chosen.get("messageSFX", defaultSFX)
     
-writeResult(message, sfx)
+writeResult(message, sfx, creatureName)
