@@ -34,7 +34,7 @@ if hasTrapped:
     sys.exit()
 
 #Special "shiny message" based on conditional probability
-isShiny = random.random() < ((1 - FLEE_CHANCE) * 1/4096)
+isShiny = random.random() < (1/4096)
 
 #locate + open JSON data file in read
 with open(CREATURES_JSON, "r", encoding="utf-8") as file:
