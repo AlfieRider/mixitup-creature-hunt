@@ -69,6 +69,7 @@ line3: the text (name) to be displayed on screen
 10. Add a `Chat action`, and use `$huntMessage` in the text as required.
 11. Add a `Conditional Action`, such that if `$huntSFX` is not equal (`<>`) to an empty value (`""`), run a `Sound Action` using `$huntSFX` as the file path.
 12. Add a `Conditional Action`, such that if `$huntName` is not equal (`<>`) to an empty value (`""`), run a `Overlay Display Action` using `$huntName` within the output text.
+13. In case of the `Trap` case, add a `Conditional Action` such that if `$huntName` is equal (`=`) to `"Trap!`, run a `Moderation Action` to then `Timeout` the given user. This can be ignored if undesired. Only included as it is defined in the requirements.
 
 ## ⚠️ MUST DO's before going live
 Please confirm that:
