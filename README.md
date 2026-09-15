@@ -88,6 +88,7 @@ Please confirm that:
 A Twitch Streamer reached out to me regarding their existing twitch redeem, being Mesian Velari's "Shiny Wooper Hunt". The original text file and many lines of `elif` selection statements with O(n) access also was asking for a little upgrade. Thus the `O(1) solution` was very quickly born. CreatureManager.py only came to exist as I thought I'd save Mesian from having to learn JSON. Ever since, through remote tinkering with MixItUp (and plenty calls to clarify requirements), this has finally been fully integrated into their Twitch Viewer Redeem engagement system. Thank you Mesian Velari for this incredibly fun mini-project! Those interested in seeing this in-action (minus the setup; as a "reedemer") are invited to check Mesian Velari's stream page on twitch.
 
 ## Extra information - Client Feedback
-The client wished to write me feedback! This will be placed here once received on my end.
-
+> *"It's been a pleasure working with Alfie on the creature hunt code. He's gone above and beyond my expectations in adding extra features and figuring out bugs that were found. It is a fantastic upgrade from my old system, it works very well, and my stream community have been very pleased to have one of their favourite redeems working much faster and smoother!"*
+>
+> **Mesian Velari, Twitch Streamer**
 
