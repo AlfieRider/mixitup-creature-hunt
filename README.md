@@ -38,9 +38,10 @@ Provided below is a table which describes each file in this repository, and brea
 ## How CreatureHunt.py works
 Each time a twitch-user hits the redeem in chat, MixItUp will run CreatureHunt.py, which does the following:
 1. Flee Check: currently, the code dictates a 20% chance that the creature will flee. On flee, the script outputs a flee message alongside the `SFX/flee.mp3` path, exiting immediately (i.e. no creature or shiny roll occurs on flee).
-2. Shiny check: rolled post-flee check, independent of which creature ends up being chosen.
-3. Creature selection: a random creature is selected from every entry in Creatures.JSON, each equally likely `P(chosen)=1/n`.
-4. Output: builds a pair of outputs, consisting of the Message and SFX path. Using ShinyMessage\SFX if the shiny check succeeded (and if either are defined), falling back of regular message/sfx, and falling back further to a default "You have caught {name}" with no SFX path defined for said creature. This is then written to HuntResult.txt as two lines (message \n SFX path) rather than outputted to the console. The below explains this further.
+2. Trap Check: currently, the code dictates a 20% chance that the redeemer will be "trapped". On trap, the script outputs a trapped indicator message alongside the `SFX/trap.mp3" path, exiting immediately (i.e. no other rolls).
+3. Shiny check: rolled post-flee check, independent of which creature ends up being chosen.
+4. Creature selection: a random creature is selected from every entry in Creatures.JSON, each equally likely `P(chosen)=1/n`.
+5. Output: builds a pair of outputs, consisting of the Message and SFX path. Using ShinyMessage\SFX if the shiny check succeeded (and if either are defined), falling back of regular message/sfx, and falling back further to a default "You have caught {name}" with no SFX path defined for said creature. This is then written to HuntResult.txt as two lines (message \n SFX path) rather than outputted to the console. The below explains this further.
 
 ## How shiny odds work.
 This section is currently pending; the exact numbers for ensuring a 1/4096 probability are being adjusted and finalised.
@@ -52,6 +53,7 @@ To resolve this, `CreatureHunt.py` now writes to `HuntResult.txt`, following the
 ```
 line1: the chat message
 line2: the sfx path (or a blank line if this doesn't exist)
+line3: the text (name) to be displayed on screen
 ```
 
 ## How to Link to MixItUp:
@@ -63,13 +65,15 @@ line2: the sfx path (or a blank line if this doesn't exist)
 6. Toggle `Wait Until Complete` ON, ensuring the file exists by the time the action runs. `Save Output` is counterintuitively not required, as the output we desire is from `HuntResult.txt`.
 7. Add a `File Action`, set to `Read Specific Line From File`. The `file path` is to `CreatureHunt.py`, line number 1 should be saved to a Special Identifier, e.g. `$huntMessage`.
 8. Add a second `File Action` pathed to the same `CreatureHunt.py`. Set line number 2 to be saved to a different identifier, such as `$huntSFX`.
-9. Add a `Chat action`, and use `$huntMessage` in the text as required.
-10. Add a `Conditional Action`, such that if `$huntSFX` is not equal (`<>`) to an empty value (`""`), run a `Sound Action` using `$huntSFX` as the file path.
+9. Add a third `File Action` pathed to the same `CreatureHunt.py`. Set line number 3 to be saved to a different indentifier, such as `$huntName`.
+10. Add a `Chat action`, and use `$huntMessage` in the text as required.
+11. Add a `Conditional Action`, such that if `$huntSFX` is not equal (`<>`) to an empty value (`""`), run a `Sound Action` using `$huntSFX` as the file path.
+12. Add a `Conditional Action`, such that if `$huntName` is not equal (`<>`) to an empty value (`""`), run a `Overlay Display Action` using `$huntName` within the output text.
 
 ## ⚠️ MUST DO's before going live
 Please confirm that:
 1. The creature pool has not been set to zero. This can be viewed in the CreatureManager. At least one entry at a time must be ensured.
-2. The two `File Actions` in MixItUp point at the correct, exact `HuntResult.txt` path. This must match the `SCRIPT_DIR` from `CreatureHunt.py`, i.e. wherever this script actually lives.
+2. The three `File Actions` in MixItUp point at the correct, exact `HuntResult.txt` path. This must match the `SCRIPT_DIR` from `CreatureHunt.py`, i.e. wherever this script actually lives.
 3. MixItUp wiring is otherwise fully complete as written above, and has been tested with a real redeem before going live.
 
 ## Known limitations
