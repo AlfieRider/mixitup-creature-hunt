@@ -46,7 +46,7 @@ Each time a twitch-user hits the redeem in chat, MixItUp will run CreatureHunt.p
 ## How shiny odds work.
 The shiny odds are currently implemented in such a way that the "flee" and "trap" check probabilities, mathematically speaking, alter the conventional shiny odds. The expected number is a 1/4096 chance of a shiny 'encounter', however the first two sets of 20% likely checks in turn result in the current shiny chance being closer to 1/6400.
 
-For a shiny chance of 1/4096, the shiny check in  `creaturehunt.py` should instead be such that the random number generated is less than ...
+For a shiny chance of 1/4096, the shiny check in  `creaturehunt.py` should instead be such that the random number generated is less than 25/65536.
 
 ## Why the output goes to a .txt file, and not the console:
 Earlier versions of `CreatureHunt.py` used `print([message, sfx])` and other similar formats. However, MixItUp External Program action has no way to parse this kind of listed output into two separate values, and doesn't support array-style indexing, or even a string-splitting function in its actions set, thus this original formatting couldn't be reconciled on MixItUp's end.
