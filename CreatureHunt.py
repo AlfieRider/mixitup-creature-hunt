@@ -13,6 +13,9 @@ RESULT_FILE = os.path.join(SCRIPT_DIR, "HuntResult.txt")
 FLEE_CHANCE = 20/100
 FLEE_SFX = os.path.join(SFX_DIR, "flee.mp3")
 
+TRAP_CHANCE = 20/100
+TRAP_SFX = os.path.join(SFX_DIR, "trap.mp3")
+
 def writeResult(message, sfx="", name=""):
     #line1 = msg, line2 = sfx path, blank if not exists.
     #See README.MD for more details on overall MixItUp integration.
@@ -22,7 +25,12 @@ def writeResult(message, sfx="", name=""):
 #chance creature flees
 hasFled = random.random() < (FLEE_CHANCE)
 if hasFled:
-    writeResult("Oh. It fled. Sorry...", FLEE_SFX)
+    writeResult("Oh. It fled. Sorry...", FLEE_SFX, "Fled")
+    sys.exit()
+
+hasTrapped = random.random() < (TRAP_CHANCE)
+if hasTrapped:
+    writeResult("Caught in a trap", TRAP_SFX, "Trap!")
     sys.exit()
 
 #Special "shiny message" based on conditional probability
