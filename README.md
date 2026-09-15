@@ -27,7 +27,7 @@ Provided below is a table which describes each file in this repository, and brea
 - Adding a creature: click "+" in the top-left. New entries are auto-named "new-creature1", "new-creature2", ..., "new-creature(n)" for n new entries. This is to avoid collisions.
 - Editing a creature: click on the creature's name in the given list (see the left of the screen), and you will be shown the current contents of this creature entry on the right of the screen. You can edit not only the Message and ShinyMessage boxes, but also the creature's name itself.
 - Message vs ShinyMessage: Message will be outputted upon a normal result from `CreatureHunt.py`. ShinyMessage will be outputted for a creature if the shiny check has succeeded in `CreatureHunt.py`. By default, if no message or shiny message is defined, the default "You have caught _CreatureName_" will be outputted.
-- MessageSFX / ShinyMessageSFX: an optional sound file path for each outcome. Either type the file path in the input box, or click the `[>] File Input` button beneath either field to navigate via file explorer instead (which filters for valid audio files). The path will then be automatically filled after selection. When manually typing the path, please ensure it is correct, as their is currently no validation for this!!!
+- MessageSFX / ShinyMessageSFX: an optional sound file path for each outcome. Either type the file path in the input box, or click the `[>] File Input` button beneath either field to navigate via file explorer instead (which filters for valid audio files). The path will then be automatically filled after selection. When manually typing the path, please ensure it is correct, as there is currently no validation for this!!!
 - Renaming: click 'Rename' next to the creature's name. Only letters (both cases), numbers, "_", and "-" are permitted. Duplicate names are also blocked.
 - Deleting: the red 'Delete Creature' button asks for delete confirmation, then will show a 5 second countdown before the window closes (upon confirming).
 - Switching creatures with unsaved edits: this application will always ask before discarding unsaved changes, whether due to clicking a different creature, closing the application, or reloading the JSON (in case of external editing).
@@ -60,7 +60,7 @@ line3: the text (name) to be displayed on screen
 1. Enter the usual MixItUp system.
 2. In Channel Point Rewards (or Commands), create and name the redeem to your pleasing.
 3. Under the Actions list, click '+' and select 'External Program'.
-4. Set the `Program File Path` to your actual `python.exe` (no the `.py` script). This is because MixItUp doesn't shell-execute by default, thus requires the real executable here. Use methods such as `where python` or searching for `python.exe` to locate this.
+4. Set the `Program File Path` to your actual `python.exe` (not the `.py` script). This is because MixItUp doesn't shell-execute by default, thus requires the real executable here. Use methods such as `where python` or searching for `python.exe` to locate this.
 5. Set the `Program Arguments` to the full path of `CreatureHunt.py` (e.g: `"C:\Folder\CreatureHunt.py"`)
 6. Toggle `Wait Until Complete` ON, ensuring the file exists by the time the action runs. `Save Output` is counterintuitively not required, as the output we desire is from `HuntResult.txt`.
 7. Add a `File Action`, set to `Read Specific Line From File`. The `file path` is to `CreatureHunt.py`, line number 1 should be saved to a Special Identifier, e.g. `$huntMessage`.
