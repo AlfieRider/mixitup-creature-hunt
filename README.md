@@ -44,7 +44,9 @@ Each time a twitch-user hits the redeem in chat, MixItUp will run CreatureHunt.p
 5. Output: builds a pair of outputs, consisting of the Message and SFX path. Using ShinyMessage\SFX if the shiny check succeeded (and if either are defined), falling back of regular message/sfx, and falling back further to a default "You have caught {name}" with no SFX path defined for said creature. This is then written to HuntResult.txt as two lines (message \n SFX path) rather than outputted to the console. The below explains this further.
 
 ## How shiny odds work.
-This section is currently pending; the exact numbers for ensuring a 1/4096 probability are being adjusted and finalised.
+The shiny odds are currently implemented in such a way that the "flee" and "trap" check probabilities, mathematically speaking, alter the conventional shiny odds. The expected number is a 1/4096 chance of a shiny 'encounter', however the first two sets of 20% likely checks in turn result in the current shiny chance being closer to 1/6400.
+
+For a shiny chance of 1/4096, the shiny check in  `creaturehunt.py` should instead be such that the random number generated is less than ...
 
 ## Why the output goes to a .txt file, and not the console:
 Earlier versions of `CreatureHunt.py` used `print([message, sfx])` and other similar formats. However, MixItUp External Program action has no way to parse this kind of listed output into two separate values, and doesn't support array-style indexing, or even a string-splitting function in its actions set, thus this original formatting couldn't be reconciled on MixItUp's end.
