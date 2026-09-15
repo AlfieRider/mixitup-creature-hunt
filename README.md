@@ -1,5 +1,5 @@
 # Creature Hunt & Creature Manager
-This repository includes a two-part tool for running a "Hunt for Creatures"-style Twitch channel point redeem. Inside are two executable files: CreatureHunt.py, which will be linked to the redeem in MixItUp (further detail provided later), and CreatureManager.py, a friendly GUI to ensure that managing the creature pool is as accessible as possible.
+This repository includes a two-part tool for running a "Hunt for Creatures"-style Twitch channel point redeem. Inside are two executable files: CreatureHunt.py, which will be linked to the redeem in MixItUp, and CreatureManager.py, a friendly GUI to ensure that managing the creature pool is as accessible as possible.
 
 ## Files
 Provided below is a table which describes each file in this repository, and breadth on how to use it.
@@ -69,7 +69,7 @@ line3: the text (name) to be displayed on screen
 10. Add a `Chat action`, and use `$huntMessage` in the text as required.
 11. Add a `Conditional Action`, such that if `$huntSFX` is not equal (`<>`) to an empty value (`""`), run a `Sound Action` using `$huntSFX` as the file path.
 12. Add a `Conditional Action`, such that if `$huntName` is not equal (`<>`) to an empty value (`""`), run a `Overlay Display Action` using `$huntName` within the output text.
-13. In case of the `Trap` case, add a `Conditional Action` such that if `$huntName` is equal (`=`) to `"Trap!`, run a `Moderation Action` to then `Timeout` the given user. This can be ignored if undesired. Only included as it is defined in the requirements.
+13. In case of the `Trap` case, add a `Conditional Action` such that if `$huntName` is equal (`=`) to `"Trap!"`, run a `Moderation Action` to then `Timeout` the given user. This can be ignored if undesired. Only included as it is defined in the requirements.
 
 ## ⚠️ MUST DO's before going live
 Please confirm that:
@@ -79,12 +79,15 @@ Please confirm that:
 
 ## Known limitations
 - No confirmation prompt if JSON pool is manually edited (i.e outside the manager). Malformed entries are silently be skipped over by .get() fallbacks rather than causing an error, so a typo'd error will simply raise a visible warning. To avoid this, only edit the JSON through the manager ideally. One or the other at a time, not both.
-- `CreatureManager.py` and `CreatureHunt.py` don't coordinate file access. In other words, there is a window where, if editing the creature pool live, the user could redeem against a half-written entry. Concurrent access and Isolation (from ACID) will be implemented later on. Please bare with.
+- `CreatureManager.py` and `CreatureHunt.py` don't coordinate file access. In other words, there is a window where, if editing the creature pool live, the user could redeem against a half-written entry. Concurrent access and Isolation (from ACID) may therefore likely be implemented later on where applicable.
 - A manually-typed audio file path currently has zero validation on save. The file explorer input feature itself does this, however the input boxes themselves don't check for things such as correct file extension, valid path format, etc.
 - `HuntResult.py` is overwritten with every redeem. This could potentially cause issues if two users could redeem this simultaneously. A "per-viewer" system could be implemented, but for now, a cooldown on this redeem (even 30 seconds) would completely prevent this.
 - Fleeing probability and shiny probability are likely incorrect, as FLEE_CHANCE is factored in twice. As mentioned above, this Shiny Probability needs to be adjusted and finalised.
 
 ## Extra information - Project origins
-A Twitch Streamer reached out to me regarding their existing twitch redeem, being Mesian Velari's "Shiny Wooper Hunt". The original text file and endless lines of `elif` selection statements with O(n) access also was asking for a little upgrade, for lack of better phrasing. Thus the `O(1) solution` was very quickly born. CreatureManager.py only came to exist as I thought I'd save Mesian from having to learn JSON. Ever since, through remote tinkering with MixItUp (and a few late-evening... 'requirement gathering' calls), this has finally been fully integrated into their Twitch Viewer Redeem engagement system. This has now been proved to incredibly simplify the process, management and setup of the redeem and its inner workings. Thank you Mesian Velari for this incredibly fun mini-project! Those interested in seeing this in-action (minus the setup; as a "reedemer") are invited to check Mesian Velari's stream page on twitch.
+A Twitch Streamer reached out to me regarding their existing twitch redeem, being Mesian Velari's "Shiny Wooper Hunt". The original text file and many lines of `elif` selection statements with O(n) access also was asking for a little upgrade. Thus the `O(1) solution` was very quickly born. CreatureManager.py only came to exist as I thought I'd save Mesian from having to learn JSON. Ever since, through remote tinkering with MixItUp (and plenty calls to clarify requirements), this has finally been fully integrated into their Twitch Viewer Redeem engagement system. Thank you Mesian Velari for this incredibly fun mini-project! Those interested in seeing this in-action (minus the setup; as a "reedemer") are invited to check Mesian Velari's stream page on twitch.
+
+## Extra information - Client Feedback
+The client wished to write me feedback! This will be placed here once received on my end.
 
 
